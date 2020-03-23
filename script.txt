@@ -1,0 +1,66 @@
+#!/bin/bash
+
+stations="1"
+
+
+for i in $stations
+do
+  vboxmanage controlvm station$i poweroff
+  vboxmanage unregistervm station$i --delete
+done
+****************************************************************************************
+
+#!/bin/bash
+
+
+stations="$*"
+
+if [ $# -lt 1 ]
+then
+  echo usage: $0 station_id ...
+  exit 1
+fi
+
+for i in $stations
+do
+  vboxmanage controlvm station$i reset
+  vboxmanage list runningvms" | grep "station$stations
+done
+*****************************************************************************************reboot
+
+#!/bin/bash
+
+stations="$*"
+
+if [ $# -lt 1 ]
+then
+  echo usage: $0 station_id ...
+  exit 1
+fi
+
+for i in $stations
+do
+  vboxmanage controlvm station$i poweroff
+  vboxmanage startvm station$i --type headless
+done
+*********************************************************************************restart
+
+#!/bin/bash
+
+stations="1"
+
+for i in $stations
+do
+  vboxmanage startvm station$i --type headless
+done
+*********************************************************************************start
+
+#!/bin/bash
+
+stations="1"
+
+for i in $stations
+do
+  vboxmanage controlvm station$i poweroff
+done
+********************************************************************************stop
